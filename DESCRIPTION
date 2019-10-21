@@ -1,0 +1,13 @@
+Package: ConstrLasso
+Type: Package
+Title: Constrasint Lasso Solution Path
+Version: 0.1.0
+Author: Antoniya Shivarova
+Maintainer: Antoniya Shivarova <an.shivarova@gmail.com>
+Description: The package contains a function for a constrained lasso regression and provides the solution path algorotihm for the constrained lasso problem as in Gaines et al. (2018).  
+    More information can be found at http://hua-zhou.github.io/SparseReg/.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: MASS, glmnet, lpSolve, ROI, ROI.plugin.qpoases
+RoxygenNote: 6.1.1
