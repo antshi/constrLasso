@@ -1,10 +1,10 @@
 
-# ConstrLasso
+# constrLasso
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The package ConstrLasso includes a function for constrained lasso regression and a solution path algorithm as in [Gaines et al. (2018)](http://hua-zhou.github.io/SparseReg/). 
+The package constrLasso includes a function for constrained lasso regression and a solution path algorithm as in [Gaines et al. (2018)](http://hua-zhou.github.io/SparseReg/). 
 
 ## Installation
 
@@ -13,17 +13,17 @@ You can install this version of the package from Github with:
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("antshi/ConstrLasso")
-library(ConstrLasso)
+install_github("antshi/constrLasso")
+library(constrLasso)
 ```
 
 ## Constrained Lasso Regression 
 
-These are basic examples which show you how to use the function ConstrLassoReg. First, let's prepare with
+These are basic examples which show you how to use the function constrLassoReg. First, let's prepare with
 
 ``` r
 # include the package
-library(ConstrLasso)
+library(constrLasso)
 
 # generate some data
 library(MASS)
@@ -41,7 +41,7 @@ yvec <- apply(Xmat[,1:real_p], 1, sum) + rnorm(n)
 No constraints and no penalty.
 
 ```r
-resultsReg <- ConstrLassoReg(Xmat, yvec, lambda=0)
+resultsReg <- constrLassoReg(Xmat, yvec, lambda=0)
 ```
 
 ### Example 2
@@ -63,21 +63,21 @@ b2 <- matrix(0.5, p, 1)
 A <- rbind(A1,A2)
 b <- rbind(b1,b2)
 
-resultsReg_ConstrPen <- ConstrLassoReg(Xmat, yvec, Aeq=Aeq, beq=beq, lambda=3)
+resultsReg_ConstrPen <- constrLassoReg(Xmat, yvec, Aeq=Aeq, beq=beq, lambda=3)
 sum(resultsReg_ConstrPen[[1]]) #should be equal to 1
 
-resultsReg_ConstrPen2 <- ConstrLassoReg(Xmat, yvec, Aeq=Aeq, beq=beq, A=A, b=b, lambda=2)
+resultsReg_ConstrPen2 <- constrLassoReg(Xmat, yvec, Aeq=Aeq, beq=beq, A=A, b=b, lambda=2)
 sum(resultsReg_ConstrPen2[[1]]) #should be equal to 1
 which(abs(resultsReg_ConstrPen2[[1]])>0.5) #should not contain entries 
 ```
 
 ## Constrained Lasso Solution Path 
 
-These are basic examples which show you how to use the function ConstrLassoPath. First, let's prepare with
+These are basic examples which show you how to use the function constrLassoPath. First, let's prepare with
 
 ``` r
 # include the package
-library(ConstrLasso)
+library(constrLasso)
 
 # generate some data
 library(MASS)
@@ -95,7 +95,7 @@ yvec <- apply(Xmat[,1:real_p], 1, sum) + rnorm(n)
 No constraints
 
 ```r
-resultsPath <- ConstrLassoPath(Xmat, yvec)
+resultsPath <- constrLassoPath(Xmat, yvec)
 ```
 
 ### Example 2
@@ -117,11 +117,11 @@ b2 <- matrix(0.5, p, 1)
 A <- rbind(A1,A2)
 b <- rbind(b1,b2)
 
-resultsPath_Constr <- ConstrLassoPath(Xmat, yvec, Aeq=Aeq, beq=beq)
+resultsPath_Constr <- constrLassoPath(Xmat, yvec, Aeq=Aeq, beq=beq)
 apply(resultsPath_Constr[[1]], 2, sum) #should be equal to 1 along the path
 
 
-resultsPath_Constr2 <- ConstrLassoPath(Xmat, yvec, Aeq=Aeq, beq=beq, A=A, b=b)
+resultsPath_Constr2 <- constrLassoPath(Xmat, yvec, Aeq=Aeq, beq=beq, A=A, b=b)
 apply(resultsPath_Constr2[[1]], 2, sum)  #should be equal to 1 along the path
 apply(resultsPath_Constr2[[1]], 2, function(x) which(abs(round(x,10))>0.5)) #should not contain entries 
 ```

@@ -1,4 +1,4 @@
-#' @title The function ConstrLassoReg
+#' @title The function constrLassoReg
 #'
 #' @description This function fits a linearly constrained lasso regression, using a predictor matrix X, a response y and a tuning parameter value lambda. It results in a vector of coefficient estimates.
 #' The function corresponds to lsq_constrsparsereg of the SparseReg MATLAB-toolbox by Zhou and Gaines, see \href{http://hua-zhou.github.io/SparseReg/}{the project page}.
@@ -26,7 +26,7 @@
 #' @return dualIneq inequality duals. The function returns an empty vector for no inequality constraints.
 #'
 #' @examples
-#' library(ConstrLasso)
+#' library(constrLasso)
 #' library(MASS)
 #' set.seed(1234)
 #' n <- 200
@@ -36,11 +36,11 @@
 #' betas <- runif(p,-2,2)
 #' nonzeros <- sample(1:p,20,replace=FALSE)
 #' yvec <- Xmat[,nonzeros]%*%betas[nonzeros] + rnorm(n,0,2)
-#' classoreg_results <- ConstrLassoReg(Xmat,yvec,lambda=0)
-#' @export ConstrLassoReg
+#' classoreg_results <- constrLassoReg(Xmat,yvec,lambda=0)
+#' @export constrLassoReg
 
 
-ConstrLassoReg <- function(X, y, lambda, Aeq=NULL, beq=NULL, A=NULL, b=NULL, penidx=NULL, method="QP"){
+constrLassoReg <- function(X, y, lambda, Aeq=NULL, beq=NULL, A=NULL, b=NULL, penidx=NULL, method="QP"){
 
 	X <- as.matrix(X)
 	n <- dim(X)[1]
@@ -170,7 +170,7 @@ ConstrLassoReg <- function(X, y, lambda, Aeq=NULL, beq=NULL, A=NULL, b=NULL, pen
 }
 
 
-#' @title The function ConstrLassoPath
+#' @title The function constrLassoPath
 #'
 #' @description This function performs a Constrained Lasso Solution Path as in Gaines et al. (2018). It computes the solution path for the constrained lasso problem, using a predictor matrix X and a response y.
 #' The constrained lasso solves the standard lasso (Tibshirani, 1996) subject to the linear equality constraints \eqn{Aeq \beta = beq} and linear inequality constraints \eqn{A \beta \le b}.
@@ -203,7 +203,7 @@ ConstrLassoReg <- function(X, y, lambda, Aeq=NULL, beq=NULL, A=NULL, b=NULL, pen
 #' @return dfPath a vector with degrees of freedom along the solution path
 #' @return objValPath a vector with values of the objective function for each value of lambdaPath
 #' @examples
-#' library(ConstrLasso)
+#' library(constrLasso)
 #' set.seed(1234)
 #' n <- 200
 #' p <- 50
@@ -212,10 +212,10 @@ ConstrLassoReg <- function(X, y, lambda, Aeq=NULL, beq=NULL, A=NULL, b=NULL, pen
 #' betas <- runif(p,-2, 2)
 #' nonzeros <- sample(1:p,20,replace=FALSE)
 #' yvec <- Xmat[,nonzeros]%*%betas[nonzeros] + rnorm(n,0,2)
-#' classopath_results <- ConstrLassoPath(Xmat, yvec)
-#' @export ConstrLassoPath
+#' classopath_results <- constrLassoPath(Xmat, yvec)
+#' @export constrLassoPath
 
-ConstrLassoPath <- function(X, y, Aeq=NULL, beq=NULL, A=NULL, b=NULL, penidx=NULL, init_method="QP",  epsilon=1e-4, stop_lambdatol=1e-7, ceiling_tol = 1e-10, zeros_tol = 1e-20, verbose=FALSE){
+constrLassoPath <- function(X, y, Aeq=NULL, beq=NULL, A=NULL, b=NULL, penidx=NULL, init_method="QP",  epsilon=1e-4, stop_lambdatol=1e-7, ceiling_tol = 1e-10, zeros_tol = 1e-20, verbose=FALSE){
 
 	if(verbose){
 		printer <- print
@@ -360,11 +360,11 @@ ConstrLassoPath <- function(X, y, Aeq=NULL, beq=NULL, A=NULL, b=NULL, penidx=NUL
 		lambda_max <- max(abs(subgrad))
 
 		# Use QP at lambda_max to initialize
-		ConstrLassoReg_sol <- ConstrLassoReg(X, y, lambda=lambda_max, Aeq=Aeq, beq=beq, A=A, b=b, penidx=penidx, method="QP")
+		constrLassoReg_sol <- constrLassoReg(X, y, lambda=lambda_max, Aeq=Aeq, beq=beq, A=A, b=b, penidx=penidx, method="QP")
 
-		betaPath[,1] <- ConstrLassoReg_sol$betahat
-		dualpathEq[,1] <- ConstrLassoReg_sol$dualEq
-		dualpathIneq[,1] <- ConstrLassoReg_sol$dualIneq
+		betaPath[,1] <- constrLassoReg_sol$betahat
+		dualpathEq[,1] <- constrLassoReg_sol$dualEq
+		dualpathIneq[,1] <- constrLassoReg_sol$dualIneq
 	}
 
 	# initialize sets

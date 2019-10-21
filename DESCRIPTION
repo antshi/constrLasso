@@ -1,4 +1,4 @@
-Package: ConstrLasso
+Package: constrLasso
 Type: Package
 Title: Constrasint Lasso Solution Path
 Version: 0.1.0
