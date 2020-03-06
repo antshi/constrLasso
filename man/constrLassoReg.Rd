@@ -4,8 +4,17 @@
 \alias{constrLassoReg}
 \title{The function constrLassoReg}
 \usage{
-constrLassoReg(X, y, lambda, Aeq = NULL, beq = NULL, A = NULL,
-  b = NULL, penidx = NULL, method = "QP")
+constrLassoReg(
+  X,
+  y,
+  lambda,
+  Aeq = NULL,
+  beq = NULL,
+  A = NULL,
+  b = NULL,
+  penidx = NULL,
+  method = "QP"
+)
 }
 \arguments{
 \item{X}{an nxp matrix of p regressors with n observations.}

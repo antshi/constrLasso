@@ -10,4 +10,4 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: MASS, glmnet, lpSolve, ROI, ROI.plugin.qpoases
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

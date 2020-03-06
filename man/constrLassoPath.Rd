@@ -4,10 +4,21 @@
 \alias{constrLassoPath}
 \title{The function constrLassoPath}
 \usage{
-constrLassoPath(X, y, Aeq = NULL, beq = NULL, A = NULL, b = NULL,
-  penidx = NULL, init_method = "QP", epsilon = 1e-04,
-  stop_lambdatol = 1e-07, ceiling_tol = 1e-10, zeros_tol = 1e-20,
-  verbose = FALSE)
+constrLassoPath(
+  X,
+  y,
+  Aeq = NULL,
+  beq = NULL,
+  A = NULL,
+  b = NULL,
+  penidx = NULL,
+  init_method = "QP",
+  epsilon = 1e-04,
+  stop_lambdatol = 1e-07,
+  ceiling_tol = 1e-10,
+  zeros_tol = 1e-20,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{X}{an nxp matrix with p regressors with n observations.}
