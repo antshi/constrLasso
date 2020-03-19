@@ -4,8 +4,17 @@
 \alias{constrLassoReg}
 \title{The function constrLassoReg}
 \usage{
-constrLassoReg(X, y, lambda, Aeq = NULL, beq = NULL, A = NULL,
-  b = NULL, penidx = NULL, method = "QP")
+constrLassoReg(
+  X,
+  y,
+  lambda,
+  Aeq = NULL,
+  beq = NULL,
+  A = NULL,
+  b = NULL,
+  penidx = NULL,
+  method = "QP"
+)
 }
 \arguments{
 \item{X}{an nxp matrix of p regressors with n observations.}
@@ -38,11 +47,11 @@ dualIneq inequality duals. The function returns an empty vector for no inequalit
 This function fits a linearly constrained lasso regression, using a predictor matrix X, a response y and a tuning parameter value lambda. It results in a vector of coefficient estimates.
 The function corresponds to lsq_constrsparsereg of the SparseReg MATLAB-toolbox by Zhou and Gaines, see \href{http://hua-zhou.github.io/SparseReg/}{the project page}.
 Only the Quadratic Programming Algorithm for ENET is implemented.
-For more information, see \href{http://hua-zhou.github.io/media/pdf/GainesKimZhou08CLasso.pdf}{Gaines et al. (2018)}.
+For more information, see \href{http://hua-zhou.github.io/media/pdf/GainesKimZhou08CLasso.pdf}{\insertCite{gaines2018algorithms;textual}{constrLasso}}.
 }
 \section{Details}{
 
-The Constrained Lasso as in Gaines et al. (2018) minimizes
+The Constrained Lasso as in \insertCite{gaines2018algorithms;textual}{constrLasso} minimizes
 \deqn{0.5||y - X \beta ||^2_2 + \lambda||\beta||_1,}
 subject to \eqn{Aeq \beta = beq} and \eqn{A \beta\le b}.
 }
@@ -59,4 +68,8 @@ betas <- runif(p,-2,2)
 nonzeros <- sample(1:p,20,replace=FALSE)
 yvec <- Xmat[,nonzeros]\%*\%betas[nonzeros] + rnorm(n,0,2)
 classoreg_results <- constrLassoReg(Xmat,yvec,lambda=0)
+
+}
+\references{
+\insertAllCited
 }

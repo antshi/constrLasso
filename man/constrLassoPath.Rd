@@ -4,10 +4,21 @@
 \alias{constrLassoPath}
 \title{The function constrLassoPath}
 \usage{
-constrLassoPath(X, y, Aeq = NULL, beq = NULL, A = NULL, b = NULL,
-  penidx = NULL, init_method = "QP", epsilon = 1e-04,
-  stop_lambdatol = 1e-07, ceiling_tol = 1e-10, zeros_tol = 1e-20,
-  verbose = FALSE)
+constrLassoPath(
+  X,
+  y,
+  Aeq = NULL,
+  beq = NULL,
+  A = NULL,
+  b = NULL,
+  penidx = NULL,
+  init_method = "QP",
+  epsilon = 1e-04,
+  stop_lambdatol = 1e-07,
+  ceiling_tol = 1e-10,
+  zeros_tol = 1e-20,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{X}{an nxp matrix with p regressors with n observations.}
@@ -47,20 +58,21 @@ dfPath a vector with degrees of freedom along the solution path
 objValPath a vector with values of the objective function for each value of lambdaPath
 }
 \description{
-This function performs a Constrained Lasso Solution Path as in Gaines et al. (2018). It computes the solution path for the constrained lasso problem, using a predictor matrix X and a response y.
-The constrained lasso solves the standard lasso (Tibshirani, 1996) subject to the linear equality constraints \eqn{Aeq \beta = beq} and linear inequality constraints \eqn{A \beta \le b}.
+This function performs a Constrained Lasso Solution Path as in \insertCite{gaines2018algorithms;textual}{constrLasso}. It computes the solution path for the constrained lasso problem, using a predictor matrix X and a response y.
+The constrained lasso solves the standard lasso \insertCite{tibshirani1996regression;textual}{constrLasso}subject to the linear equality constraints \eqn{Aeq \beta = beq} and linear inequality constraints \eqn{A \beta \le b}.
 The result lambdaPath contains the values of the tuning parameter along the solution path and betaPath - the estimated regression coefficients for each value of lambdaPath.
 The function corresponds to lsq_classopath of the SparseReg MATLAB-toolboxof by Zhou and Gaines, see \href{http://hua-zhou.github.io/SparseReg/}{the project page}.
-For more information, see \href{http://hua-zhou.github.io/media/pdf/GainesKimZhou08CLasso.pdf}{Gaines et al. (2018)}.
+For more information, see \href{http://hua-zhou.github.io/media/pdf/GainesKimZhou08CLasso.pdf}{\insertCite{gaines2018algorithms;textual}{constrLasso}}.
 }
 \section{Details}{
 
-The Constrained Lasso as in Gaines et al. (2018) minimizes
+The Constrained Lasso as in \insertCite{gaines2018algorithms;textual}{constrLasso} minimizes
 \deqn{0.5||y - X \beta ||^2_2 + \lambda||\beta||_1,}
 subject to \eqn{Aeq \beta = beq} and \eqn{A \beta\le b}.
 }
 
 \examples{
+
 library(constrLasso)
 set.seed(1234)
 n <- 200
@@ -71,4 +83,8 @@ betas <- runif(p,-2, 2)
 nonzeros <- sample(1:p,20,replace=FALSE)
 yvec <- Xmat[,nonzeros]\%*\%betas[nonzeros] + rnorm(n,0,2)
 classopath_results <- constrLassoPath(Xmat, yvec)
+
+}
+\references{
+\insertAllCited
 }

@@ -9,5 +9,6 @@ Description: The package contains a function for a constrained lasso regression 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: MASS, glmnet, lpSolve, ROI, ROI.plugin.qpoases
-RoxygenNote: 6.1.1
+Imports: Rdpack, MASS, glmnet, lpSolve, ROI, ROI.plugin.qpoases
+RdMacros: Rdpack
+RoxygenNote: 7.0.2
